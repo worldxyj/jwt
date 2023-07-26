@@ -1,6 +1,6 @@
 {
     "name": "worldxyj/jwt",
-    "description": "A simple library of JWT",
+    "description": "一个简单的JWT库",
     "type": "library",
     "license": "MIT",
     "authors": [
