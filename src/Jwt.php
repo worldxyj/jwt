@@ -52,6 +52,7 @@ class Jwt
      *
      * @param array $payload jwt载荷
      * @return array
+     * @throws \Exception
      */
     public function getToken($payload)
     {
@@ -68,9 +69,9 @@ class Jwt
             $base64header = self::base64UrlEncode(json_encode(self::$header, JSON_UNESCAPED_UNICODE));
             $base64payload = self::base64UrlEncode(json_encode($payload, JSON_UNESCAPED_UNICODE));
             $token = $base64header . '.' . $base64payload . '.' . $this->signature($base64header . '.' . $base64payload, $this->secret, self::$header['alg']);
-            return $this->responseSuccess($token);
+            return $token;
         } else {
-            return $this->responseError(106, 'payload格式错误');
+            throw new \Exception('payload格式错误');
         }
     }
 
@@ -81,6 +82,7 @@ class Jwt
      * @param array $payload
      * @param int $exp
      * @return array
+     * @throws \Exception
      *
      */
     public function getTokenWithExp($payload, $exp)
@@ -98,9 +100,9 @@ class Jwt
             $base64header = self::base64UrlEncode(json_encode(self::$header, JSON_UNESCAPED_UNICODE));
             $base64payload = self::base64UrlEncode(json_encode($payload, JSON_UNESCAPED_UNICODE));
             $token = $base64header . '.' . $base64payload . '.' . $this->signature($base64header . '.' . $base64payload, $this->secret, self::$header['alg']);
-            return $this->responseSuccess($token);
+            return $token;
         } else {
-            return $this->responseError(106, 'payload格式错误');
+            throw new \Exception('payload格式错误');
         }
     }
 

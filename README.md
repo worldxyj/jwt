@@ -20,11 +20,11 @@ $payload = [
     'des' => '一个简单的JWT库'
 ];
 
-$reponseDefault = $jwt->getToken($payload);// 默认过期时间1天
+$tokenDefault = $jwt->getToken($payload);// 默认过期时间1天
 
-$reponseExp = $jwt->getTokenWithExp($payload, 3600 * 24);// 自定义过期时间
+$tokenExp = $jwt->getTokenWithExp($payload, 3600 * 24);// 自定义过期时间
 
-$res = $jwt->verifyToken($reponseDefault['data']);// 验证token
+$res = $jwt->verifyToken($tokenDefault);// 验证token
 
 if($res['errcode'] == 0){
     $payload = $res['data'];
